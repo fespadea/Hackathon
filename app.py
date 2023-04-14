@@ -30,11 +30,6 @@ class glassState:
 app = Application("HelloWorld", state=glassState)
 
 
-@app.external
-def hello(name: abi.String, *, output: abi.String) -> Expr:
-    return output.set(Concat(Bytes("Hello, "), name.get()))
-
-
 @app.create(authorize=Authorize.only_creator())
 def setGlassAddresses(glassAddresses: abi.Array) -> Expr:
     i = 0
